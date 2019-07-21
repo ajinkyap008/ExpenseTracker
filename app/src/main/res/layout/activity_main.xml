@@ -54,7 +54,7 @@
                         android:background="@color/cyan"
                         android:inputType="date"
                         android:textColor="@color/brown"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         />
                     <TextView
                         android:id="@+id/timeText"
@@ -64,7 +64,7 @@
                         android:background="@color/cyan"
                         android:layout_margin="10dp"
                         android:textColor="@color/brown"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

@@ -9,17 +9,22 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
     Spinner spinner1,s;
     final ArrayList<String> ExpenseHead=new ArrayList<String>();
     final ArrayList<String> ExpenseType=new ArrayList<String>();
-
-
+    TextView textViewDate,textViewTime ;
+    Calendar calendar ;
+    SimpleDateFormat simpleDateFormatDate,simpleDateFormatTime  ;
+    String timestamp_date,timestamp_time ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
          s=(Spinner)findViewById(R.id.spinner_type) ;
+         textViewDate = findViewById(R.id.dateText) ;
+        textViewTime = findViewById(R.id.timeText) ;
+        calendar = Calendar.getInstance() ;
+        simpleDateFormatDate = new SimpleDateFormat("dd-MM-yyyy") ;
+        timestamp_date = simpleDateFormatDate.format(calendar.getTime()) ;
+        textViewDate.setText(timestamp_date);
+
+        simpleDateFormatTime = new SimpleDateFormat("HH:mm:ss") ;
+        timestamp_time = simpleDateFormatTime.format(calendar.getTime()) ;
+        textViewTime.setText(timestamp_time);
 
         ExpenseHead.add("Select Expense Head");
         ExpenseHead.add("Travel");
@@ -63,9 +78,6 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
-
-
-
     }
 
     private void func_ExpenseType(String state) {
@@ -73,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("here", "func_ExpenseType: ");
 
         if(state.equals("Select Expense Head")){
-
             ExpenseType.clear();
             ExpenseType.add("Select Expense Type");
         }

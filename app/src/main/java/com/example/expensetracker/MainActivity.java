@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     Spinner spinner1,s;
-    final ArrayList<String> states=new ArrayList<String>();
-    final ArrayList<String> city=new ArrayList<String>();
+    final ArrayList<String> ExpenseHead=new ArrayList<String>();
+    final ArrayList<String> ExpenseType=new ArrayList<String>();
 
 
 
@@ -26,66 +26,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         s=(Spinner)findViewById(R.id.spinner_city);
+         s=(Spinner)findViewById(R.id.spinner_type) ;
 
-        states.add("Select State");
-        states.add("AndraPradesh");
-        states.add("Karnataka");
-        states.add("Kerela");
-        states.add("Maharashtra");
+        ExpenseHead.add("Select Expense Head");
+        ExpenseHead.add("Travel");
+        ExpenseHead.add("Food");
+        ExpenseHead.add("Medical");
+        ExpenseHead.add("Others");
 
 
-        spinner1=(Spinner)findViewById(R.id.spinner_state);
-        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,states);
+        spinner1=(Spinner)findViewById(R.id.spinner_head);
+        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,ExpenseHead);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(arrayAdapter);
 
-        city.add("Select City");
+        ExpenseType.add("Select Expense Type");
 
         Log.d("here", "onCreate: ");
 
 
-
-      //  String selected_state = spinner1.getSelectedItem().toString().trim();
-
-
-   /*    spinner1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-
-
-           @Override
-           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               String state = states.get(i).toString().trim();
-
-               func_city(state);
-           }
-
-
-           @Override
-           public void onNothingSelected(AdapterView<?> parent) {
-           }
-
-
-        });
-
-*/
-
-
     spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-
-
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             Log.d("here", "onItemSelected: above ");
-            String state = states.get(i).toString();
-
-
+            String state = ExpenseHead.get(i).toString();
 
             Log.d("here", "onItemSelected:  ");
 
             if(!TextUtils.isEmpty(state))
-            func_city(state);
+            func_ExpenseType(state);
         }
 
         @Override
@@ -99,84 +68,66 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void func_city(String state) {
+    private void func_ExpenseType(String state) {
 
-        Log.d("here", "func_city: ");
+        Log.d("here", "func_ExpenseType: ");
 
-        if(state.equals("Select State")){
+        if(state.equals("Select Expense Head")){
 
-            city.clear();
-            city.add("Select City");
+            ExpenseType.clear();
+            ExpenseType.add("Select Expense Type");
         }
 
-        if(state.equals("AndraPradesh")){
+        else if(state.equals("Travel")){
+            Log.d("here", "func_ExpenseType: Travel");
 
-            Log.d("here", "func_city: Andrapradesh");
+            ExpenseType.clear();
 
-            city.clear();
-
-            city.add("Vishakapatnam");
-            city.add("Tirupati");
-            city.add("Vijaywada");
-            city.add("Guntur");
-
-        }
-
-
-       else if(state.equals("Karnataka")){
-
-            Log.d("here", "func_city: Karnataka");
-
-            city.clear();
-
-            city.add("Banglore");
-            city.add("Manglore");
-            city.add("Hubli");
-            city.add("Belgaum");
+            ExpenseType.add("Bus");
+            ExpenseType.add("Train");
+            ExpenseType.add("Aerial");
+            ExpenseType.add("Others");
 
         }
 
 
+        else if(state.equals("Food")){
+            Log.d("here", "func_ExpenseType: Food");
 
-        else if(state.equals("Kerela")){
-            Log.d("here", "func_city: Kerela");
+            ExpenseType.clear();
 
-            city.clear();
-
-            city.add("Thiruvanantapuram");
-            city.add("Kochi");
-            city.add("Kollam");
-            city.add("Kozhikode");
-
-        }
-
-        else if(state.equals("Maharashtra")){
-            Log.d("here", "func_city: Maharashtra");
-
-            city.clear();
-
-            city.add("Pune");
-            city.add("Mumbai");
-            city.add("Nagpur");
-            city.add("Nashik");
+            ExpenseType.add("Dinner");
+            ExpenseType.add("Lunch");
+            ExpenseType.add("BreakFast");
+            ExpenseType.add("Others");
 
         }
 
+        else if(state.equals("Medical")){
+            Log.d("here", "func_ExpenseType: Medical");
+
+            ExpenseType.clear();
+
+            ExpenseType.add("Hospital");
+            ExpenseType.add("Prescription");
+            ExpenseType.add("Others");
+        }
+
+        else if(state.equals("Others")) {
+            Log.d("here", "func_ExpenseType: Others");
+
+            ExpenseType.clear();
+            ExpenseType.add("Others");
+        }
 
 
-        ArrayAdapter<String> ar=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,city);
+        ArrayAdapter<String> ar=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_item,ExpenseType);
         ar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(ar);
 
-        //city.clear();
-
-
-
+        //ExpenseType.clear();
 
     }
-
-
-
 
 
 }

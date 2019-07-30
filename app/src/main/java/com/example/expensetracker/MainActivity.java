@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                password_edit = password_text.getText().toString().trim() ;
-                username_edit = username_text.getText().toString().trim() ;
+                password_edit = password_text.getText().toString().trim();
+                username_edit = username_text.getText().toString().trim();
                 if(password_edit.equals("pccoe") && username_edit.equals("pccoe")) {
                     Intent intent = new Intent(MainActivity.this, ExpenseTrack.class);
                     Toast.makeText(MainActivity.this, "Expense Billing Form", Toast.LENGTH_SHORT).show();

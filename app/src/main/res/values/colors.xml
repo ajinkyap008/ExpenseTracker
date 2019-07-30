@@ -15,4 +15,10 @@
     <color name="cyan">#00BCD4</color>
     <color name="white">#FFFFFF</color>
     <color name="brown">#A24C32</color>
+    <color name="trans_blue">#7C147BCC</color>
+    <color name="trans_red">#7EE93C31</color>
+    <color name="trans_yellow">#7EFFC71E</color>
+    <color name="lime">#FFEB3B</color>
+    <color name="dark_blue">#095F8D</color>
+    <color name="trans_pink">#34FF0055</color>
 </resources>

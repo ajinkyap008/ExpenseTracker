@@ -5,196 +5,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/back_1"
-    android:gravity="top"
+    android:background="@drawable/back_login"
+    android:gravity="center"
     android:padding="10dp"
     >
-    <ScrollView
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/login_card"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:elevation="35dp"
+        app:cardCornerRadius="10dp"
+        >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:background="@drawable/back_card"
             >
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_margin="50dp"
-                android:text="Expense Tracker"
-                android:textSize="35sp"
-                android:textColor="@color/white"
-                />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/dateCard"
-                android:descendantFocusability="beforeDescendants"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/card_group"
-                android:elevation="10dp"
-
-                app:cardCornerRadius="5dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/violet"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_margin="8dp"
-                            android:id="@+id/txt_date"
-                            android:hint=" "
-
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:textSize="20sp"
-                            android:layout_height="wrap_content"/>
-
-                        <ImageView
-                            android:id="@+id/img_date"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_margin="8dp"
-
-
-                            app:srcCompat="@mipmap/calender"
-                            tools:ignore="contentDescription" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_margin="8dp"
-                            android:id="@+id/txt_time"
-                            android:hint=" "
-                             android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:textSize="20sp"
-                            android:layout_height="wrap_content"/>
-
-                        <ImageView
-                            android:id="@+id/img_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-
-
-                            app:srcCompat="@drawable/clock"
-
-                            tools:ignore="contentDescription" />
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_expense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textView"
-                android:elevation="10dp"
-                app:cardCornerRadius="5dp"
-
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/violet"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="20dp"
-                    >
-
-
-                    <Spinner
-                        android:id="@+id/spinner_head"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textView"
-                        android:elevation="5dp"
-                        android:layout_margin="15dp"
-                        />
-
-                    <Spinner
-                        android:id="@+id/spinner_type"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textView"
-                        android:layout_marginTop="30dp"
-                        android:elevation="5dp"
-                        android:layout_margin="15dp"
-                        />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/card_expense"
-                android:elevation="10dp"
-                app:cardCornerRadius="5dp"
+            <EditText
+                android:id="@+id/login_name"
+                android:inputType="textPersonName"
                 android:layout_margin="25dp"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/violet"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="20dp"
-                    >
-
-                    <Spinner
-                        android:id="@+id/spinner_groupHead"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textView"
-                        android:elevation="5dp"
-                        android:layout_margin="15dp"
-                        />
-
-                    <Spinner
-                        android:id="@+id/spinner_groupName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textView"
-                        android:layout_marginTop="30dp"
-                        android:elevation="5dp"
-                        android:layout_margin="15dp"
-                        />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Username"
+                android:textColorHint="@color/brown"
+                />
+            <EditText
+                android:id="@+id/login_password"
+                android:inputType="textPassword"
+                android:layout_below="@id/login_name"
+                android:layout_margin="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Password"
+                android:textColorHint="@color/brown"
+                />
         </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
-    </ScrollView>
-
-
-
-
-
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_back"
+        android:layout_below="@id/login_card"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="55dp"
+        android:text="LOGIN"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        />
 </RelativeLayout>

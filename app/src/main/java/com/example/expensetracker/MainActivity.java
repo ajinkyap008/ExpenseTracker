@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    username_text.setText("");
+                    password_text.setText("");
                     Toast.makeText(MainActivity.this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
                 }
             }

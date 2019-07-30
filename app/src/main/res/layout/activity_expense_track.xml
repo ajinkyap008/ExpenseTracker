@@ -4,50 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExpenseTrack"
     android:background="@drawable/back_1"
     android:gravity="top"
     android:padding="10dp"
-    >
+    tools:context=".ExpenseTrack">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_margin="50dp"
+                android:gravity="center"
                 android:text="Expense Tracker"
-                android:textSize="35sp"
                 android:textColor="@color/white"
-                />
+                android:textSize="35sp" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/dateCard"
-                android:descendantFocusability="beforeDescendants"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/card_group"
-                android:elevation="10dp"
-
-                app:cardCornerRadius="5dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-                >
+
+                android:descendantFocusability="beforeDescendants"
+                android:elevation="10dp"
+                app:cardCornerRadius="5dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/violet"
-                    android:orientation="vertical"
                     android:gravity="center"
-                    android:padding="10dp"
-                    >
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -55,14 +53,14 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_margin="8dp"
                             android:id="@+id/txt_date"
-                            android:hint=" "
-
-                            android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:textSize="20sp"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:hint=" "
+                            android:textSize="20sp" />
 
                         <ImageView
                             android:id="@+id/img_date"
@@ -71,7 +69,7 @@
                             android:layout_margin="8dp"
 
 
-                            app:srcCompat="@mipmap/calender"
+                            app:srcCompat="@mipmap/ic_calender"
                             tools:ignore="contentDescription" />
 
                     </LinearLayout>
@@ -82,13 +80,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_margin="8dp"
                             android:id="@+id/txt_time"
-                            android:hint=" "
-                            android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:textSize="20sp"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:hint=" "
+                            android:textSize="20sp" />
 
                         <ImageView
                             android:id="@+id/img_time"
@@ -112,21 +110,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView"
-                android:elevation="10dp"
-                app:cardCornerRadius="5dp"
-
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
 
+                android:elevation="10dp"
+                app:cardCornerRadius="5dp"
+
                 >
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/violet"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="20dp"
-                    >
+                    android:padding="20dp">
 
 
                     <Spinner
@@ -134,19 +132,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textView"
-                        android:elevation="5dp"
                         android:layout_margin="15dp"
-                        />
+                        android:elevation="5dp" />
 
                     <Spinner
                         android:id="@+id/spinner_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textView"
-                        android:layout_marginTop="30dp"
-                        android:elevation="5dp"
                         android:layout_margin="15dp"
-                        />
+                        android:layout_marginTop="30dp"
+                        android:elevation="5dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -155,37 +151,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/card_expense"
-                android:elevation="10dp"
-                app:cardCornerRadius="5dp"
                 android:layout_margin="25dp"
-                >
+                android:elevation="10dp"
+                app:cardCornerRadius="5dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/violet"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="20dp"
-                    >
+                    android:padding="20dp">
 
                     <Spinner
                         android:id="@+id/spinner_groupHead"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textView"
-                        android:elevation="5dp"
                         android:layout_margin="15dp"
-                        />
+                        android:elevation="5dp" />
 
                     <Spinner
                         android:id="@+id/spinner_groupName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textView"
-                        android:layout_marginTop="30dp"
-                        android:elevation="5dp"
                         android:layout_margin="15dp"
-                        />
+                        android:layout_marginTop="30dp"
+                        android:elevation="5dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </RelativeLayout>

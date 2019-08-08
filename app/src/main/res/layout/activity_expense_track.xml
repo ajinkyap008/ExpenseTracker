@@ -24,17 +24,153 @@
                 android:layout_margin="50dp"
                 android:gravity="center"
                 android:text="Expense Tracker"
-                android:textColor="@color/white"
+                android:textColor="@color/red"
                 android:textSize="35sp" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_expense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+
+                android:elevation="10dp"
+                app:cardCornerRadius="5dp"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/card_back"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+
+                    <Spinner
+                        android:id="@+id/spinner_head"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView"
+                        android:layout_margin="15dp"
+                        android:elevation="10dp"
+                        android:outlineSpotShadowColor="@color/red"
+                        android:popupBackground="@drawable/card_back" />
+
+                    <Spinner
+                        android:id="@+id/spinner_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView"
+                        android:layout_margin="15dp"
+                        android:layout_marginTop="30dp"
+                        android:elevation="5dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_expense"
+                android:layout_margin="25dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/card_back"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <Spinner
+                        android:id="@+id/spinner_groupHead"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView"
+                        android:layout_margin="15dp"
+                        android:elevation="5dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_groupName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView"
+                        android:layout_margin="15dp"
+                        android:layout_marginTop="30dp"
+                        android:elevation="5dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <EditText
+                android:id="@+id/bill_no"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/card_group"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:hint="ENTER BILL NUMBER"
+                android:padding="10dp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/biller_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/bill_no"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:hint="ENTER BILLER NAME" />
+
+            <EditText
+                android:id="@+id/bill_add"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/biller_name"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:hint="ADDRESS" />
+
+            <AutoCompleteTextView
+                android:id="@+id/bill_city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/bill_add"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:allowUndo="true"
+                android:completionThreshold="1"
+                android:hint="ENTER CITY" />
+
+            <EditText
+                android:id="@+id/bill_amt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/bill_city"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:allowUndo="true"
+                android:hint="AMOUNT"
+                android:inputType="numberDecimal"
+                android:textAlignment="textEnd" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/dateCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/card_group"
+                android:layout_below="@id/bill_amt"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-
+                android:layout_marginBottom="20dp"
                 android:descendantFocusability="beforeDescendants"
                 android:elevation="10dp"
                 app:cardCornerRadius="5dp">
@@ -42,7 +178,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/violet"
+                    android:background="@drawable/card_back"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="10dp">
@@ -93,10 +229,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="8dp"
-
-
                             app:srcCompat="@drawable/clock"
-
                             tools:ignore="contentDescription" />
 
                     </LinearLayout>
@@ -105,82 +238,79 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_expense"
+            <EditText
+                android:id="@+id/bill_parti"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textView"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_height="match_parent"
+                android:layout_below="@id/dateCard"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:hint="Particulars" />
 
-                android:elevation="10dp"
-                app:cardCornerRadius="5dp"
-
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/violet"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-
-                    <Spinner
-                        android:id="@+id/spinner_head"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textView"
-                        android:layout_margin="15dp"
-                        android:elevation="5dp" />
-
-                    <Spinner
-                        android:id="@+id/spinner_type"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textView"
-                        android:layout_margin="15dp"
-                        android:layout_marginTop="30dp"
-                        android:elevation="5dp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_group"
+            <EditText
+                android:id="@+id/bill_remark"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/card_expense"
-                android:layout_margin="25dp"
-                android:elevation="10dp"
-                app:cardCornerRadius="5dp">
+                android:layout_height="match_parent"
+                android:layout_below="@id/bill_parti"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:hint="REMARKS" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/violet"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+            <TextView
+                android:id="@+id/bill_im_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/bill_remark"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="CAPTURE BILL IMAGE" />
 
-                    <Spinner
-                        android:id="@+id/spinner_groupHead"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textView"
-                        android:layout_margin="15dp"
-                        android:elevation="5dp" />
+            <Button
+                android:id="@+id/browse_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/bill_im_text"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="BROWSE IMAGE" />
 
-                    <Spinner
-                        android:id="@+id/spinner_groupName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/textView"
-                        android:layout_margin="15dp"
-                        android:layout_marginTop="30dp"
-                        android:elevation="5dp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            <ImageButton
+                android:id="@+id/bill_cap_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/browse_img"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_photo_camera_black_24dp" />
+
+            <ImageView
+                android:id="@+id/bill_img"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
+                android:layout_below="@id/bill_cap_img"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_image_black_24dp" />
+
+            <Button
+                android:id="@+id/sub"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/bill_img"
+                android:text="SUBMIT" />
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/sub"
+                android:text="CLEAR" />
         </RelativeLayout>
 
 

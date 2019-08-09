@@ -55,7 +55,7 @@ public class ExpenseTrack extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog date;
     Bitmap bitmap;
-    Button submit,clr,browse;
+    Button submit,clr,browse,img_clear;
     AutoCompleteTextView city,billername;
     EditText billno,addr,amount,particulars,remarks;
     ImageView img_bill;
@@ -83,6 +83,7 @@ public class ExpenseTrack extends AppCompatActivity {
         calendar = Calendar.getInstance() ;
         submit=findViewById(R.id.sub);
         clr=findViewById(R.id.clear);
+        img_clear = findViewById(R.id.bill_img_clear) ;
 
         final String Cities[]=new String[]{"Pune","Mumbai","Chennai","Hyderabad","Delhi","Banglore","Kolkata"};
         ArrayAdapter<String> Auto_City=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Cities);
@@ -104,9 +105,18 @@ public class ExpenseTrack extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent next=new Intent(ExpenseTrack.this,BillSubmitted.class);
-                startActivity(next);
+                if(billno.getText().toString().trim().isEmpty())
+                {
+                    billno.setError("Required Field....");
+                }
+                else if(amount.getText().toString().trim().isEmpty())
+                {
+                    amount.setError("Required Field....");
+                }
+                else {
+                    Intent submitter = new Intent(ExpenseTrack.this, BillSubmitted.class);
+                    startActivity(submitter);
+                }
             }
         });
 
@@ -207,6 +217,13 @@ public class ExpenseTrack extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+
+        img_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                img_bill.setImageResource(R.drawable.ic_image_black_24dp);
             }
         });
 

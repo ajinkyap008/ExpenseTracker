@@ -25,7 +25,8 @@
                 android:id="@+id/img_appIcon"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
-                android:src="@mipmap/ic_app_logo" />
+                android:src="@drawable/logo" />
+
             <!--
                         <androidx.cardview.widget.CardView
                             android:id="@+id/login_card"

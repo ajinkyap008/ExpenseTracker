@@ -108,10 +108,12 @@ public class ExpenseTrack extends AppCompatActivity {
                 if(billno.getText().toString().trim().isEmpty())
                 {
                     billno.setError("Required Field....");
+                    billno.requestFocus() ;
                 }
                 else if(amount.getText().toString().trim().isEmpty())
                 {
                     amount.setError("Required Field....");
+                    amount.requestFocus() ;
                 }
                 else {
                     Intent submitter = new Intent(ExpenseTrack.this, BillSubmitted.class);

@@ -4,11 +4,11 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="light_blue">#A9D0FC</color>
-    <color name="orange">#FF9800</color>
-    <color name="yellow">#FFC71E</color>
+    <color name="orange">#FFB300</color>
+    <color name="yellow">#FFD600</color>
     <color name="pink">#F03F7A</color>
     <color name="violet">#9639CF</color>
-    <color name="light_green">#85F38C</color>
+    <color name="light_green">#64DD17</color>
     <color name="green">#00AF07</color>
     <color name="red">#E93C31</color>
     <color name="blue">#147BCC</color>
@@ -19,7 +19,7 @@
     <color name="trans_red">#7EE93C31</color>
     <color name="trans_yellow">#7EFFC71E</color>
     <color name="lime">#FFEB3B</color>
-    <color name="dark_blue">#095F8D</color>
+    <color name="dark_blue">#0091EA</color>
     <color name="trans_pink">#34FF0055</color>
     <color name="grey">#BBBBBB</color>
 </resources>

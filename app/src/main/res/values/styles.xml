@@ -9,6 +9,6 @@
     </style>
 
     <style name="NoTitle" parent="AppTheme">
-        <item name="windowNoTitle">true</item>
+        <item name="windowNoTitle">false</item>
     </style>
 </resources>

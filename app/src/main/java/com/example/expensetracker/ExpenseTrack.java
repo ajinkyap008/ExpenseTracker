@@ -350,45 +350,4 @@ public class ExpenseTrack extends AppCompatActivity {
     }
 
 
-    //To show Alert dialog when back button is pressed.
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exitByBackKey();
-
-            //moveTaskToBack(false);
-
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    protected void exitByBackKey() {
-
-        AlertDialog alertbox = new AlertDialog.Builder(this)
-                .setMessage("Do you want to exit application?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-
-                    // do something when the button is clicked
-                    public void onClick(DialogInterface arg0, int arg1) {
-
-                        //finish();
-                        //close();
-                        Intent a = new Intent(Intent.ACTION_MAIN);
-                        a.addCategory(Intent.CATEGORY_HOME);
-                        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(a);
-
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-
-                    // do something when the button is clicked
-                    public void onClick(DialogInterface arg0, int arg1) {
-                    }
-                })
-                .show();
-
-    }
-
-
 }

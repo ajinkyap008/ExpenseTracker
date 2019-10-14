@@ -61,8 +61,7 @@ public class IntroActivity extends AppCompatActivity {
                         startActivity(a);
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-
+                .setNegativeButton("No", new DialogInterface.OnClickListener(){
                     // do something when the button is clicked
                     public void onClick(DialogInterface arg0, int arg1) {
                     }

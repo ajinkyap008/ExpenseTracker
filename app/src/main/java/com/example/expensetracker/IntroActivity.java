@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -14,16 +15,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+
 public class IntroActivity extends AppCompatActivity {
 
+    PieChart pieChart;
+    PieData pieData;
+    PieDataSet pieDataSet;
+    ArrayList entries,entryDesc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-
+        pieChart = findViewById(R.id.pieChart);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +45,33 @@ public class IntroActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        plotGraph();
+    }
+
+    private void plotGraph() {
+        entries = new ArrayList();
+        entryDesc = new ArrayList();
+
+        entries.add(new PieEntry(200f,"food"));
+        entries.add(new PieEntry(200f,"travel"));
+        entries.add(new PieEntry(200f,"medical"));
+        entries.add(new PieEntry(200f,"others"));
+
+        pieDataSet = new PieDataSet(entries,"Expenses");
+
+        entryDesc.add("FOOD");
+        entryDesc.add("TRAVEL");
+        entryDesc.add("MEDICAL");
+        entryDesc.add("OTHERS");
+
+        pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
+        pieDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        pieDataSet.setValueTextColor(Color.WHITE);
+        pieDataSet.setValueTextSize(15f);
+        pieDataSet.setSliceSpace(5f);
+        pieChart.animateXY(1000,1000);
     }
 
     //To show Alert dialog when back button is pressed.

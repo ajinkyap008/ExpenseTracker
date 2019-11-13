@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back_1"
+    android:background="@color/white"
     android:gravity="top"
     android:padding="10dp"
     tools:context=".ExpenseTrack">
@@ -28,7 +28,7 @@
                 android:layout_margin="40dp"
                 android:gravity="center"
                 android:text="New Expense"
-                android:textColor="@color/light_blue"
+                android:textColor="@color/blue"
                 android:textSize="35sp" />
 
 
@@ -377,7 +377,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/sub"
-                android:text="CLEAR" />
+                android:text="CLEAR"
+                android:background="@color/green"/>
         </RelativeLayout>
 
 

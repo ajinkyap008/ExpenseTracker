@@ -53,10 +53,10 @@ public class IntroActivity extends AppCompatActivity {
         entries = new ArrayList();
         entryDesc = new ArrayList();
 
-        entries.add(new PieEntry(200f,"food"));
-        entries.add(new PieEntry(200f,"travel"));
-        entries.add(new PieEntry(200f,"medical"));
-        entries.add(new PieEntry(200f,"others"));
+        entries.add(new PieEntry(550f,"Food"));
+        entries.add(new PieEntry(400f,"Travel"));
+        entries.add(new PieEntry(200f,"Medical"));
+        entries.add(new PieEntry(150f,"Others"));
 
         pieDataSet = new PieDataSet(entries,"Expenses");
 
@@ -117,7 +117,7 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
         switch(id){
             case R.id.logout:

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 import android.net.nsd.NsdManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     String password_edit,username_edit ;
     TextView textView;
     SQLiteDatabase db;
+    DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
 
 
@@ -47,7 +49,12 @@ public class MainActivity extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Log.d("onclick1", "onClick: ");
+
                 Intent intent=new Intent(MainActivity.this, RegistrationActivity.class);
+
+                Log.d("onclick2", "onClick: ");
                 startActivity(intent);
             }
         });
@@ -56,32 +63,29 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 password_edit = password_text.getText().toString().trim();
                 username_edit = username_text.getText().toString().trim();
-                Cursor cursor=db.rawQuery("Select DISTINCT tbl_name from sqlite_master where tbl_name= 'Users'",null);
-                if (cursor.getCount()!=0) {
-                    cursor = db.rawQuery("Select password,isadmin from Users where username = '" + username_edit + "'", null);
-                    if (cursor.moveToFirst()) {
-                        if (password_edit.equals(cursor.getString(0))) {
-                            if (cursor.getInt(1) == 0) {
-                                Intent intent = new Intent(MainActivity.this, IntroActivity.class);
-                                startActivity(intent);
-                            } else if (cursor.getInt(1) == (1)) {
-                                Intent intent = new Intent(MainActivity.this, AdminActivity.class);
-                                startActivity(intent);
-                            }
-                        }
-                    }
-                    else{
-                        username_text.setText("");
-                        password_text.setText("");
-                        Toast.makeText(MainActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                else
-                {
+
+                int check = databaseHelper.validate_user_login(username_edit,password_edit);
+
+
+
+                if(check == 0){
                     username_text.setText("");
                     password_text.setText("");
                     Toast.makeText(MainActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
+
                 }
+
+                else if(check == 1){
+                    Intent intent = new Intent(MainActivity.this, IntroActivity.class);
+                    intent.putExtra("username" , username_edit);
+                    startActivity(intent);
+                }
+
+                else{
+                    Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
     }

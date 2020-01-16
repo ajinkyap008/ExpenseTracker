@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,9 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText Fname,Lname,Username,Password;
     SQLiteDatabase db;
     int flag_isadmin;
+
+    DatabaseHelper login = new DatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +42,12 @@ public class RegistrationActivity extends AppCompatActivity {
         radioButton2=findViewById(R.id.emp_rb);
         db=openOrCreateDatabase("Expense_Database", Context.MODE_PRIVATE,null);
 
+
+
         radioButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("radio1", "onClick: ");
                 Toast.makeText(RegistrationActivity.this, "Admin Selected", Toast.LENGTH_SHORT).show();
                 flag_isadmin=1;
             }
@@ -49,10 +56,12 @@ public class RegistrationActivity extends AppCompatActivity {
         radioButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("onclick2", "onClick: ");
                 Toast.makeText(RegistrationActivity.this, "Employee Selected", Toast.LENGTH_SHORT).show();
                 flag_isadmin=0;
             }
         });
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,9 +70,12 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(RegistrationActivity.this,"Please Fill up all the fields.",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    int res = insert_login_info(db, Fname.getText().toString(), Lname.getText().toString(), Username.getText().toString(), Password.getText().toString(), flag_isadmin);
+                    Log.d("hh123", "onClick: ");
+                    int res = login.add_login(Fname.getText().toString(), Lname.getText().toString(), Username.getText().toString(), Password.getText().toString(), flag_isadmin);
                     if (res == 1) {
+                        Log.d("hh2", "onClick: ");
                         Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                        Log.d("hh3", "onClick: ");
                         startActivity(intent);
                     } else {
                         showMessage("Username EXISTS!!!", "Please use a different Username");
@@ -101,27 +113,5 @@ public class RegistrationActivity extends AppCompatActivity {
 //                    break;
 //        }
 //    }
-    int insert_login_info(SQLiteDatabase database, String fname, String lname, String user_name, String passw, int F_isadmin){
-        String tn="Users";
-        Cursor cursor=db.rawQuery("Select DISTINCT tbl_name from sqlite_master where tbl_name= '"+ tn + "'",null);
-        if (cursor.getCount()==0)
-        {
-            database.execSQL("Create TABLE IF NOT EXISTS Users(F_name varchar,L_name varchar,username varchar Primary Key,password varchar,isadmin integer);");
-        }
-        cursor=db.rawQuery("Select password from Users where username = '"+user_name+"';",null);
-//        int x=cursor.getInt(0);
-//        System.out.println("Value :"+x);
-        if(cursor.getCount()!=0)
-            return 0;
-//        database.execSQL("Insert into Users values("+fname+","+lname+","+user_name+","+passw+","+F_isadmin+");");
-        ContentValues values=new ContentValues();
-        values.put("F_name",fname);
-        values.put("L_name",lname);
-        values.put("username",user_name);
-        values.put("password",passw);
-        values.put("isadmin",F_isadmin);
-        database.insert("Users",null,values);
 
-        return 1;
-    }
 }

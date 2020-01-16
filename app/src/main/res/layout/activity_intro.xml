@@ -66,6 +66,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/approv"
                         android:text="Approved"
+                        android:onClick="on_approved_click"
                         android:gravity="center"
                         android:textColor="@color/white"
                         >

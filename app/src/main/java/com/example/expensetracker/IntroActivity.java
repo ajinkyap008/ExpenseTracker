@@ -2,12 +2,17 @@ package com.example.expensetracker;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.media.session.PlaybackState;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,16 +37,34 @@ public class IntroActivity extends AppCompatActivity {
     PieData pieData;
     PieDataSet pieDataSet;
     ArrayList entries,entryDesc;
+    String username;
+    DatabaseHelper databaseHelper;
+    RecyclerView recyclerView;
+    RecyclerAdapter recyclerAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
         pieChart = findViewById(R.id.pieChart);
+
+        Intent intent = getIntent();
+
+        Bundle extras = getIntent().getExtras();
+        if(extras == null) {
+            username= null;
+        } else {
+            username= extras.getString("username");
+        }
+
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(IntroActivity.this,ExpenseTrack.class);
+                i.putExtra("username",username);
                 startActivity(i);
             }
         });
@@ -129,5 +152,76 @@ public boolean onOptionsItemSelected(@NonNull MenuItem item) {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void on_approved_click(View view) {
+
+        Intent submitter = new Intent(IntroActivity.this, AcceptedActivity.class);
+        submitter.putExtra("username" , username);
+        startActivity(submitter);
+
+        /*databaseHelper = new DatabaseHelper(this);
+
+
+
+        databaseHelper = new DatabaseHelper(this);
+
+        System.out.println(username);
+
+        Log.d("onapproved", "on_approved_click: ");
+
+        Cursor c1 = databaseHelper.gethead(username);
+        Cursor c2 = databaseHelper.getcategory(username);
+        Log.d("onapproved2", "on_approved_click: ");
+        Cursor c3 = databaseHelper.getinfo(username);
+        Log.d("onapproved3", "on_approved_click: ");
+        Cursor c4 = databaseHelper.getdetails(username);
+
+        Log.d("onapproved4", "on_approved_click: ");
+
+        StringBuffer stringBuffer = new StringBuffer();
+
+
+
+
+        System.out.println("c1 : " + c1.getCount() + "\n");
+        System.out.println("c2 : " + c2.getCount() + "\n");
+        System.out.println("c3 : " + c3.getCount() + "\n");
+        System.out.println("c4 : " + c4.getCount() + "\n");
+
+        if(c1.getCount() == 0 || c2.getCount() == 0 || c3.getCount() == 0 || c4.getCount() == 0){
+
+            System.out.println("c1 : " + c1.getCount() + "\n");
+            System.out.println("c2 : " + c2.getCount() + "\n");
+            System.out.println("c3 : " + c3.getCount() + "\n");
+            System.out.println("c4 : " + c4.getCount() + "\n");
+
+
+            showmessage("Error","Nothing found");
+            return;
+        }
+
+
+
+        while(c1.moveToNext() && c2.moveToNext() && c3.moveToNext() && c4.moveToNext()){
+            stringBuffer.append("id : " + c1.getString(0) + "\n");
+            stringBuffer.append(("head_name : " + c1.getString(1) + "\n"));
+            stringBuffer.append("category_name : " + c2.getString(3) + "\n");
+            stringBuffer.append("bill no : " + c3.getString(3) + "\n");
+            stringBuffer.append("biller name : " + c3.getString(4) + "\n");
+            stringBuffer.append("date : " + c4.getString(2) + "\n");
+            stringBuffer.append("time : " + c4.getString(3) + "\n\n");
+
+
+        }
+        showmessage("Data",stringBuffer.toString());*/
+    }
+
+    public void showmessage(String title , String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 }

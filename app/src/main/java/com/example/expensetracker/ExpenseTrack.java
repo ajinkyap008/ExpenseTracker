@@ -1,20 +1,20 @@
 package com.example.expensetracker;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
+import android.renderscript.ScriptIntrinsicYuvToRGB;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.solver.widgets.ConstraintWidgetGroup;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -62,6 +63,22 @@ public class ExpenseTrack extends AppCompatActivity {
     ImageView img_bill;
     public String Exp_amount;
     public String bill_number,biller_name,cty,dt,exp_hd,exp_cat;
+    int id = -1;
+    String username;
+    DbBitmapUtility dbBitmapUtility = new DbBitmapUtility();
+
+
+
+    //object of sqlitedatabase to access classes of sq;itedatabases.
+    SQLiteDatabase db;
+
+
+    String head_selected = "";
+    String category_selected = "";
+
+
+    DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +103,17 @@ public class ExpenseTrack extends AppCompatActivity {
         clr=findViewById(R.id.clear);
         img_clear = findViewById(R.id.bill_img_clear) ;
 
+
+
+        Intent intent = getIntent();
+        Bundle extras = getIntent().getExtras();
+        if(extras == null) {
+            username= null;
+        } else {
+            username= extras.getString("username");
+        }
+
+
         final String Cities[]=new String[]{"Pune","Mumbai","Chennai","Hyderabad","Delhi","Banglore","Kolkata"};
         ArrayAdapter<String> Auto_City=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Cities);
         city=findViewById(R.id.bill_city);
@@ -93,6 +121,9 @@ public class ExpenseTrack extends AppCompatActivity {
 
         InputStream inputStream = getResources().openRawResource(R.drawable.ic_image_black_24dp); //runs even after error
         bitmap= BitmapFactory.decodeStream(inputStream);
+
+
+
 
         cap_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +133,8 @@ public class ExpenseTrack extends AppCompatActivity {
                 startActivityForResult(cap,bill_pic);
             }
         });
+
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +150,38 @@ public class ExpenseTrack extends AppCompatActivity {
                     amount.requestFocus() ;
                 }
                 else {
+
+                    String bill_no = billno.getText().toString().trim();
+                    String biller_name = billername.getText().toString().trim();
+                    String address = addr.getText().toString().trim();
+                    String city_name = city.getText().toString().trim();
+                    String time = txt_time.getText().toString().trim();
+                    String date = txt_date.getText().toString().trim();
+                    String particular = particulars.getText().toString().trim();
+                    String remark = remarks.getText().toString().trim();
+                    long total_amount = 0;
+
+
+                    byte[] image = dbBitmapUtility.getBytes(bitmap);
+
+
+
+                    try {
+                        total_amount = Integer.parseInt(amount.getText().toString());
+                    } catch(NumberFormatException nfe) {
+                        System.out.println("Could not parse " + nfe);
+                    }
+
+                    Log.d("above_helper", "onClick: ");
+
+                    id = databaseHelper.add_expense_head(head_selected , head_selected , 1,username);
+                    databaseHelper.add_expense_category(username,id,head_selected,category_selected,head_selected);
+                    databaseHelper.add_expense_info(username,id,bill_no,biller_name,address,city_name,total_amount);
+                    databaseHelper.add_expense_details(username,id,date,time,particular,remark,'A',image);
+                    databaseHelper.add_user_details(username , id);
+
+                    Log.d("below_helper", "onClick: ");
+
                     Intent submitter = new Intent(ExpenseTrack.this, BillSubmitted.class);
                     startActivity(submitter);
                 }
@@ -209,12 +274,13 @@ public class ExpenseTrack extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("here", "onItemSelected: above ");
-                String state = ExpenseHead.get(i).toString();
+                head_selected = ExpenseHead.get(i).toString();
 
                 Log.d("here", "onItemSelected:  ");
 
-                if(!TextUtils.isEmpty(state))
-                    func_ExpenseType(state);
+
+                if(!TextUtils.isEmpty(head_selected))
+                    func_ExpenseType(head_selected);
             }
 
             @Override
@@ -332,13 +398,33 @@ public class ExpenseTrack extends AppCompatActivity {
         }
 
 
+
+        s=(Spinner)findViewById(R.id.spinner_type);
         ArrayAdapter<String> ar=new ArrayAdapter<String>(ExpenseTrack.this,android.R.layout.simple_spinner_item,ExpenseType);
         ar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(ar);
 
         //ExpenseType.clear();
 
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("here111", "onItemSelected: above ");
+                category_selected = ExpenseType.get(i).toString();
+
+                Log.d("here222", "onItemSelected:  ");
+                System.out.println(category_selected);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
+
+
 
     private Bitmap getBitmapFromUri(Uri uri) throws IOException {
         ParcelFileDescriptor parcelFileDescriptor =
@@ -348,6 +434,8 @@ public class ExpenseTrack extends AppCompatActivity {
         parcelFileDescriptor.close();
         return image;
     }
+
+
 
 
 }

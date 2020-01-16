@@ -169,6 +169,13 @@
                         android:completionThreshold="1"
                         android:hint="ENTER CITY" />
 
+                    <!--
+                    <fragment android:id="@+id/autocomplete_fragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                        />
+                    -->
                     <EditText
                         android:id="@+id/bill_amt"
                         android:layout_width="match_parent"

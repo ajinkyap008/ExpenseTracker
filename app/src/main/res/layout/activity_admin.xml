@@ -1,16 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminActivity"
-    android:gravity="center">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="ADMINISTRATOR  List View Of All the Transactions."
-    android:textSize="40sp"
-    android:gravity="center"
-    ></TextView>
-</LinearLayout>
+    android:orientation="vertical"
+    tools:context=".AdminActivity">
+
+
+        <LinearLayout
+            android:id="@+id/aa1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="160dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="5dp"
+                app:cardCornerRadius="30dp">
+
+                <TextView
+                    android:id="@+id/admin_app"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/approv"
+                    android:gravity="center"
+                    android:text="Approved"
+                    android:textColor="@color/white"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="160dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="5dp"
+                app:cardCornerRadius="30dp">
+
+                <TextView
+                    android:id="@+id/admin_rej"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/reject"
+                    android:gravity="center"
+                    android:text="Rejected"
+                    android:textColor="@color/white"/>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/aa1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <androidx.cardview.widget.CardView
+            android:layout_width="160dp"
+            android:layout_height="70dp"
+            app:cardCornerRadius="30dp"
+            android:layout_marginEnd="5dp"
+            >
+            <TextView
+                android:id="@+id/admin_pend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/re_submit"
+                android:text="Pending"
+                android:gravity="center"
+                android:textColor="@color/white"
+                >
+
+            </TextView>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="160dp"
+            android:layout_height="70dp"
+            app:cardCornerRadius="30dp"
+            android:layout_marginEnd="5dp"
+            >
+            <TextView
+                android:id="@+id/admin_resub"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/reopen"
+                android:text="Re-Submitted"
+                android:gravity="center"
+                android:textColor="@color/white"
+                />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</RelativeLayout>

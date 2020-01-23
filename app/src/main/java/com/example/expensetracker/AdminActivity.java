@@ -11,14 +11,53 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AdminActivity extends AppCompatActivity {
 
+    TextView approved,rejected,resub,pending;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
+        approved=findViewById(R.id.admin_app);
+        rejected=findViewById(R.id.admin_rej);
+        resub=findViewById(R.id.admin_resub);
+        pending=findViewById(R.id.admin_pend);
+
+
+        approved.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent i = new Intent(AdminActivity.this,ApprovedList.class);
+//                startActivity(i);
+            }
+        });
+        pending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent i = new Intent(AdminActivity.this,PendingList.class);
+//                startActivity(i);
+            }
+        });
+        resub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent i = new Intent(AdminActivity.this,ResubList.class);
+//                startActivity(i);
+            }
+        });
+        rejected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent i = new Intent(AdminActivity.this,RejectedList.class);
+//                startActivity(i);
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

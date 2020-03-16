@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.renderscript.ScriptIntrinsicYuvToRGB;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AcceptedActivity extends AppCompatActivity {
@@ -50,11 +51,36 @@ public class AcceptedActivity extends AppCompatActivity {
         Log.d("onapproved4", "on_approved_click: ");
 
 
+        ArrayList<String> list = new ArrayList<String>();
+
+
+        while(c1.moveToNext() && c2.moveToNext() && c3.moveToNext() && c4.moveToNext()){
+            //list.add(c1.getString(0));//id
+            list.add((c1.getString(1)));//head
+            list.add(c2.getString(3));//category
+            list.add(c3.getString(3));//bill no
+            list.add(c3.getString(4) );//bill name
+            list.add((c3.getString(5)));//address
+            list.add((c3.getString(6)));//city
+            list.add((c3.getString(7)));//amount
+            list.add(c4.getString(2) );//date
+            list.add(c4.getString(3) );//time
+            list.add((c4.getString(4)));//particular
+            list.add((c4.getString(5)));//remark
+
+
+        }
+
+        for(int i=0;i<list.size();i++){
+            Log.d("Accepted", "onCreate: " + list.get(i) + "\n");
+        }
+
+
         recyclerView = findViewById(R.id.rcv_view);
 
         Log.d("onapproved31", "on_approved_click: ");
 
-        recyclerAdapter = new RecyclerAdapter(this , c1 , c2 , c3 , c4);
+        recyclerAdapter = new RecyclerAdapter(this , list , c1);
 
         Log.d("onapproved32", "on_approved_click: ");
 
@@ -65,6 +91,8 @@ public class AcceptedActivity extends AppCompatActivity {
         recyclerView.setAdapter(recyclerAdapter);
 
         Log.d("onapproved34", "on_approved_click: ");
+
+        //list.clear();
 
         /*StringBuffer stringBuffer = new StringBuffer();
 

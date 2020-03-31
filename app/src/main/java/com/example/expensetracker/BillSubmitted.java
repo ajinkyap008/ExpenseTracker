@@ -11,4 +11,5 @@ public class BillSubmitted extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill_submitted);
     }
+
 }

@@ -20,8 +20,6 @@ public class AcceptedActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
     String username;
-
-
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
     @Override

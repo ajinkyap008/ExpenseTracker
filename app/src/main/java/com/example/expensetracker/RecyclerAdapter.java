@@ -27,6 +27,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     int k = 0;
 
+    public RecyclerAdapter(Context context, ArrayList<String>arrayList){
+        mContext = context;
+        list = arrayList;
+    }
+
     public RecyclerAdapter(Context context , ArrayList<String>arrayList , Cursor head_cursor){
         mContext = context ;
         list = arrayList;
@@ -197,6 +202,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             tv_remark = itemView.findViewById(R.id.bill_remark);
 
         }
+//        class MyviewHolder extends RecyclerView.ViewHolder{
+//           //for admin view which includes buttons for approval and rejection.
+//        }
     }
 
 

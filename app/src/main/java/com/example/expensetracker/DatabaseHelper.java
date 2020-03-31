@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -37,7 +38,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     String sqllogin = "CREATE TABLE IF NOT EXISTS login_details(name VARCHAR , surname VARCHAR , username varchar , password VARCHAR , isadmin int);";
 
 
-
     SQLiteDatabase db;
 
     private static final int db_version = 4;
@@ -49,9 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
         //db = sqLiteDatabase;
-
     /*
         sqLiteDatabase.execSQL(sqlhead);
         sqLiteDatabase.execSQL(sqllogin);
@@ -64,6 +62,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     */
     }
 
+    public ArrayList<Cursor> getPending_List_Admin(){
+        db = getWritableDatabase();
+        ArrayList<Cursor> l = new ArrayList<Cursor>();
+        Cursor c1 = db.rawQuery("select id from expense_details where status = 'P';",null);
+        Cursor c2;
+        while(c1.moveToNext())
+        {
+            c2 = db.rawQuery("(select * from expense_category where where id = " + c1.getString(0) + ") UNION (select * from expense_info where id = " + c1.getString(0) + ") UNION (select * from expense_details where id = " + c1.getString(0) + ") ;",null);
+            l.add(c2);
+        }
+        return l;
+    }
 
     public int add_login(String name, String surname, String username, String password, int isadmin) {
 

@@ -177,7 +177,7 @@ public class ExpenseTrack extends AppCompatActivity {
                     id = databaseHelper.add_expense_head(head_selected , head_selected , 1,username);
                     databaseHelper.add_expense_category(username,id,head_selected,category_selected,head_selected);
                     databaseHelper.add_expense_info(username,id,bill_no,biller_name,address,city_name,total_amount);
-                    databaseHelper.add_expense_details(username,id,date,time,particular,remark,'A',image);
+                    databaseHelper.add_expense_details(username,id,date,time,particular,remark,'P',image);
                     databaseHelper.add_user_details(username , id);
 
                     Log.d("below_helper", "onClick: ");

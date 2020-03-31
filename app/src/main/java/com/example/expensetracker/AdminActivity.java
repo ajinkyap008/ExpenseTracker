@@ -19,10 +19,20 @@ import android.widget.Toast;
 public class AdminActivity extends AppCompatActivity {
 
     TextView approved,rejected,resub,pending;
+    String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
+        Intent intent = getIntent();
+
+        Bundle extras = getIntent().getExtras();
+        if(extras == null) {
+            username= null;
+        } else {
+            username= extras.getString("username");
+        }
 
         approved=findViewById(R.id.admin_app);
         rejected=findViewById(R.id.admin_rej);
@@ -40,8 +50,9 @@ public class AdminActivity extends AppCompatActivity {
         pending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i = new Intent(AdminActivity.this,PendingList.class);
-//                startActivity(i);
+                Intent submitter = new Intent(AdminActivity.this, PendingListAdmin.class);
+                submitter.putExtra("username" , username);
+                startActivity(submitter);
             }
         });
         resub.setOnClickListener(new View.OnClickListener() {

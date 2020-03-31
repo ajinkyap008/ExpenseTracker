@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
                 else{
                     Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                    intent.putExtra("username" , username_edit);
                     startActivity(intent);
                 }
 
